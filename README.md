@@ -1,6 +1,6 @@
 # Welcome to the Developer Help Bot!
 
-This is a bot created in Node.js that aims to help programmers solve everyday problems. The bot was designed to be easy to use and provide quick and accurate responses.
+This is a bot created in Node.js (v18.14.0) that aims to help programmers solve everyday problems. The bot was designed to be easy to use and provide quick and accurate responses.
 
 ## Installation
 
@@ -21,4 +21,4 @@ This is an open source project and everyone is welcome to contribute! If you hav
 
 ## License
 
-This project is licensed under the MIT license. For more information, see the [LICENSE](https://chat.openai.com/LICENSE) file in our repository
+This project is licensed under the MIT license. For more information, see the [LICENSE](LICENSE.md) file in our repository
