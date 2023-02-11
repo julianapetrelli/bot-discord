@@ -2,7 +2,10 @@ const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const { TOKEN } = process.env;
+const { TOKEN, OPENAI_SECRET_KEY } = process.env;
+
+const got = require('got');
+const prompt = `Artist: Megadeth\n\nLyrics:\n`;
 
 // import the command files
 const fs = require('node:fs');
@@ -46,3 +49,25 @@ client.on(Events.InteractionCreate, async interaction => {
         interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 });
+
+(async () => {
+    const url = 'https://api.openai.com/v1/engines/davinci/completions';
+    const params = {
+      "prompt": prompt,
+      "max_tokens": 160,
+      "temperature": 0.7,
+      "frequency_penalty": 0.5
+    };
+  
+    const headers = {
+      'Authorization': `Bearer ${OPENAI_SECRET_KEY}`,
+    };
+  
+    try {
+      const response = await got.post(url, { json: params, headers: headers }).json();
+      output = `${prompt}${response.choices[0].text}`;
+      console.log(output);
+    } catch (err) {
+      console.log(err);
+    }
+  })();
